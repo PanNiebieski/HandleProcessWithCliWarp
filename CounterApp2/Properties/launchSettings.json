@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "CounterApp": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

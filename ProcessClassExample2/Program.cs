@@ -21,8 +21,8 @@ psi.WorkingDirectory = @"C:\Users\PanNiebieski\source\repos\HandleProcess\Counte
 using (var process = new Process())
 {
     process.StartInfo = psi;
-    process.OutputDataReceived += (sender, e) => TestHandler(sender, e, "Output");
-    process.ErrorDataReceived += (sender, e) => TestHandler(sender, e, "Error");
+    process.OutputDataReceived += (sender, e) => Handler(sender, e, "Output");
+    process.ErrorDataReceived += (sender, e) => Handler(sender, e, "Error");
 
     process.Start();
     process.BeginOutputReadLine();
@@ -58,7 +58,7 @@ Console.WriteLine("===================================================\n");
 var processInfo = new ProcessStartInfo();
 
 //processInfo.FileName = @"C:\Windows\system32\cmd.exe";
-//processInfo.Arguments = "docker run -it --rm counter-image 1";
+//processInfo.Arguments = "docker run --rm counter-image 4";
 processInfo.FileName = @"C:\Program Files\Docker\Docker\resources\bin\docker.exe";
 processInfo.Arguments = "run -it --rm counter-image 4";
 processInfo.CreateNoWindow = true;
@@ -70,8 +70,8 @@ int exitCode;
 using (var process = new Process())
 {
     process.StartInfo = processInfo;
-    process.OutputDataReceived += (sender, e) => TestHandler(sender, e, "Output");
-    process.ErrorDataReceived += (sender, e) => TestHandler(sender, e, "Error");
+    process.OutputDataReceived += (sender, e) => Handler(sender, e, "Output");
+    process.ErrorDataReceived += (sender, e) => Handler(sender, e, "Error");
 
     process.Start();
     process.BeginOutputReadLine();
@@ -86,7 +86,7 @@ using (var process = new Process())
     process.Close();
 }
 
-void TestHandler(object sender, DataReceivedEventArgs e, string v)
+void Handler(object sender, DataReceivedEventArgs e, string v)
 {
     if (e.Data != null)
         Console.WriteLine($"{v} {e.Data}");
